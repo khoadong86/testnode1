@@ -1,0 +1,113 @@
+body{font-size:2vw;}
+#ad_holder{position:absolute;height:50.625vw;width:90vw;}
+
+#content_in{position:absolute;height:98%;width:98%;overflow:hidden}
+
+#logo_holder{position:absolute;width:21%;top:14%;left:17%;display:none;}
+#eyes_holder{position:absolute;width:25%;bottom:0%;right:0%}
+#learn_more_button{position:absolute;width:25.9%;bottom:20%;display:none}
+#btn_close_holder{position:absolute;width:5vw;top:4%;right:2%}
+
+
+#bg_holder{position:absolute;width:97%;height:94%;}
+#bg_border{position:absolute;width:100%;height:100%;pointer-events:none;}
+
+#video_holder{position:absolute;width:100%;height:100%;}
+#video_div_holder{}
+
+#white_bg_holder{position:absolute;width:100%;height:100%;}
+#right_white_bg_holder{position:absolute;right:0%;width:100%;height:100%;pointer-events: none;}
+#left_white_bg_holder{position:absolute;left:0%;width:100%;height:100%;pointer-events: none;}
+
+#line_over_holder{width:auto;height:100%;top:0%;right:14%;position:absolute;pointer-events:none;}
+#light_line_holder{width:200px;height:200px;top:0%;right:23%;position:absolute;pointer-events:none;}
+    #line_holder{width:85%;height:85%;top:0%;right:0%;position:absolute;overflow:hidden;}
+    #light_holder{width:auto;height:auto;bottom:1%;left:-1%;position:absolute;}
+
+#text_group_holder{position:absolute;left:3%;bottom:10%;width:38%;height:50%;text-align:center;}
+#txt_header_holder{position:absolute;bottom:42%;width:100%;color:white;line-height:1em;font-size:1.9em;font-weight: bold;text-align:left;text-shadow: 1px 1px 5px #000000, -1px -1px 5px #000000, 1px 1px 5px #000000, -1px -1px 5px #000000;}
+#txt_getfree_holder{position:absolute;bottom:10%;width:120%;color:white;line-height:1em;font-size:1.3em;text-align:left;text-shadow: 1px 1px 5px #000000, -1px -1px 5px #000000, 1px 1px 5px #000000, -1px -1px 5px #000000;}
+#claim_btn_holder{position:absolute;bottom:13%;width:35%;height:17%;right:-2%;}
+#next_icon_img{position:absolute;right:8%;top:30%}
+#learnmore_btn_holder{position:absolute;bottom:4%;width:35%;height:17%;right:-2%;}
+#txt_btn_get_holder{position:absolute;width:45%;color:white;font-size:3.2em;text-align:center;right:39%;top:2%;}
+#txt_btn_learnmore_holder{position:absolute;width:90%;color:white;font-size:1.7em;text-align:center;right:2%;top:19%;}
+#txt_count_down{color:white;font-size:1.4em;}
+#txt_got_reward{color:white;font-size:1.4em;}
+#reward_icon{width:1em;vertical-align:middle;height:auto}
+#reward_icon_btn{height:1.8em;vertical-align:middle;width:auto;right:23%;top:30%;position:absolute;}
+#visible_holder{position:absolute;width:100%;height:300%;top:-100%;overflow: hidden;}
+#btn_light_group{height:33%;top:48%;left:8%;width:20%;-webkit-animation:run_loop 1.5s infinite;}
+    @-webkit-keyframes run_loop {
+        0%{left:15%;opacity: 0.3}
+        15%{opacity: 1;}
+        100%{left:250%;opacity: 1}
+    }
+#btn_light_holder{height:97%;}
+#btn_light_outer_holder{height:200%;}
+
+.btn_light{position:absolute}
+.txt{font-family: 'Source Sans Pro'}
+.center_div{position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%)}
+.center_div_r{position:absolute;top:50%;right:50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%)}
+.center_div_b_r{position:absolute;bottom:50%;right:50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%)}
+.center_div_b{position:absolute;bottom:50%; transform: translate(0%,-50%); -webkit-transform: translate(0%,-50%);}
+.video_div_style{position:absolute;width:90vw;height:50.625vw;}
+
+.txtCoundDownExpandState{position:absolute;bottom:0%;left:39%}
+.txtCountDownCollapseState{position:absolute;bottom:3%;left:30%}
+.adsTextExpandState{position:absolute;bottom:0%;right:1%;}
+.adsTextCollapseState{position:absolute;bottom:-0.2em;right:5vw;}
+
+#cancel_video_popup { display: none; z-index: 10000001; top: 0%; width: 100%; height: 100%; -webkit-transform: translateZ(0); font-size: 8px; background-color: rgba(0,0,0,0.5) }
+
+#cancel_video_popup { position: fixed; left: 0; right: 0; bottom: 0; text-align: center }
+#cancel_video_popup > div { display: inline-block; vertical-align: middle }
+#cancel_video_popup .info_cont {  top: 30% }
+
+#cancel_video_popup { -webkit-transform: translateZ(0); position: absolute; left: 0; color: #000; z-index: 9999 }
+#cancel_video_popup .info_cont { width: 36em; background: rgba(255, 255, 255, 0.9); text-align: center; position: relative }
+#cancel_video_popup .title { font-weight: bold; padding: 1em 1em 0 1em }
+#cancel_video_popup .title span { font-size: 3em }
+#cancel_video_popup .body { padding: 1em }
+#cancel_video_popup .body span { font-size: 2em }
+#cancel_video_popup .actions { color: #60A5F2 }
+#cancel_video_popup .actions div { padding: 1em; width: 15.9em }
+#cancel_video_popup .actions span { font-size: 2.5em }
+
+#no_internet_popup { display: none; z-index: 10000001; top: 0%; width: 100%; height: 100%; -webkit-transform: translateZ(0); font-size: 8px; background-color: rgba(0,0,0,0.5) }
+#no_internet_popup { position: fixed; left: 0; right: 0; bottom: 0; text-align: center }
+#no_internet_popup > div { display: inline-block; vertical-align: middle }
+
+#no_internet_popup { -webkit-transform: translateZ(0); position: absolute; left: 0; color: #000; z-index: 9999 }
+#no_internet_popup .info_cont { width: 36em; background: rgba(255, 255, 255, 0.9); text-align: center; position: absolute }
+#no_internet_popup .title { font-weight: bold; padding: 1em 1em 0 1em }
+#no_internet_popup .title span { font-size: 3em }
+#no_internet_popup .body { padding: 1em }
+#no_internet_popup .body span { font-size: 2em }
+#no_internet_popup .actions { color: #60A5F2 }
+#no_internet_popup .actions div { padding: 1em; width: 15.9em }
+#no_internet_popup .actions span { font-size: 2.5em }
+
+.popup_yes { float: left; font-weight: bold; border-top: 1px solid #DCDCDC; border-right: 1px solid #DCDCDC }
+.popup_no { float: left; font-weight: bold; border-top: 1px solid #DCDCDC }
+
+.radius5 { border-radius: 1.1em; -webkit-border-radius: 1.1em; border: 1px solid #DCDCDC }
+
+.arrow{position:absolute;height:100%;opacity:0;pointer-events: none}
+.arrowb{position:absolute;height:100%;opacity:0;pointer-events: none}
+
+@-webkit-keyframes fade-out {
+0% { opacity: 0.1;}
+20% { opacity: 0.7;}
+100% {opacity: 0.1;}
+}
+
+.fade-out {
+    -webkit-animation: fade-out 0.4s ease-in;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+}
+
+
+@font-face {font-family:Quark; src:url('fonts/quark-bold.ttf');}

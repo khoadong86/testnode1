@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Car runner</title>
+        <style>
+            body { line-height: 0px; padding: 0px; margin: 0px; }
+            .container { margin: auto; width: 1200px; padding-left: 200px; }
+            .row {
+                font-size: 0px;
+                overflow: visible;
+            }
+            .milestone { 
+                width: 60px; 
+                font-size: 12px;
+                display: inline-block;
+                height: 30px;
+                padding: 0 20px;
+            }
+            .lane {
+                width: 128px;
+                height: 120px;
+                max-width: 128px;
+                max-height: 120px;
+                overflow: visible;
+                display: inline-block;
+                margin: auto;
+                background-color: black;
+                vertical-align: bottom;
+                position: relative;
+                border: 1px solid darkgray;
+            }
+            .lane:hover {background-color: darkgray;}
+            .lane img {
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+				width: 105px;
+				height: 105px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+            }
+            #pallete {
+                position: fixed;
+                width: 250px;
+                height: 100%;
+                overflow: scroll;
+                background-color: gainsboro;
+                z-index: 2;
+                text-align: left;
+            }
+            #pallete input { margin-top: 20px;  }
+            #sprite-select img {
+                height: 60px;
+                width: auto;
+            }
+            
+            #export_area { width: 160px; margin: 20px 10px;}
+        </style>
+    </head>
+    <body>
+
+        
+        <div id="pallete">
+            <div id="sprite-select">
+                <input type="radio" name="sprite" id="floor" />
+                <label for="floor"> Floor <img src="floor_1.png"/></label> <br>
+                <input type="radio" name="sprite" id="Icon" />
+                <label for="Icon"> Icon <img src="lg_icon.png"/></label> <br>
+                <input type="radio" name="sprite" id="item1" />
+                <label for="item1"> Item 1 <img src="item_1.png"/></label> <br>
+                <input type="radio" name="sprite" id="item2" />
+                <label for="item2"> Item 2 <img src="item_2.png"/></label> <br>
+				<input type="radio" name="sprite" id="item3" />
+                <label for="item3"> Item 3 <img src="item_3.png"/></label> <br>
+				<input type="radio" name="sprite" id="item4" />
+                <label for="item4"> Item 4 <img src="item_4.png"/></label> <br>
+				<input type="radio" name="sprite" id="item5" />
+                <label for="item5"> Item 5 <img src="item_5.png"/></label> <br>
+				<input type="radio" name="sprite" id="item6" />
+                <label for="item6"> Item 6 <img src="item_6.png"/></label> <br>
+				<input type="radio" name="sprite" id="item7" />
+                <label for="item7"> Item 7 <img src="item_7.png"/></label> <br>
+				<input type="radio" name="sprite" id="item8" />
+                <label for="item8"> Item 8 <img src="item_8.png"/></label> <br>
+				<input type="radio" name="sprite" id="item9" />
+                <label for="item9"> speedup <img src="speedup.png"/></label> <br>
+				<input type="radio" name="sprite" id="item10" />
+                <label for="item10"> saw <img src="saw.png"/></label> <br>
+				<input type="radio" name="sprite" id="item11" />
+                <label for="item11"> bounce <img src="bounce.png"/></label> <br>
+            </div>
+            
+            <input type="button" onclick="import_settings()" value="import"/>
+            <input type="button" onclick="export_settings()" value="export"/>
+            
+            <textarea rows="20" cols="50" id="export_area" readonly>
+            </textarea>
+        </div>
+        
+        <div id="container" class="container">
+            <div class="row" id="base">
+                <div class="milestone"></div>
+                <div class="lane"><img src=""></img></div>
+                <div class="lane"><img src=""></img></div>
+                <div class="lane"><img src=""></img></div>
+                <div class="lane"><img src=""></img></div>
+                <div class="lane"><img src=""></img></div>
+                <div class="lane"><img src=""></img></div>
+            </div>
+        </div>
+        
+        
+        
+        <script>
+            var {app, remote} = require('electron');
+            
+            var container = document.getElementById("container");
+            var base = document.getElementById("base");
+            var intervals = 55;
+            var interval_length = 360;
+            
+            for (var i = intervals; i > 0; i--) {
+                var node = base.cloneNode(true);
+                node.id = "";
+                container.appendChild(node);
+                node.time_value = Math.round((intervals - i) / intervals * 60 * 100) / 100;
+                node.getElementsByClassName("milestone")[0].innerHTML = i + " row";
+				//if (i%2 == 1)
+				{
+					var elements = node.getElementsByClassName("lane");
+					for (var j=0; j<elements.length; j++)
+					{
+                                            if (j < 3)
+                                            {
+                                                //elements[j].sprite_value = 0;
+                                                //elements[j].getElementsByTagName("img")[0].src = "floor_1.png";
+                                            }
+                                            else 
+                                            {
+                                                elements[j].sprite_value = 0;
+                                                elements[j].getElementsByTagName("img")[0].src = "floor_1.png";
+                                            }
+					}
+				}
+            }     
+            
+            var null_values = [
+                "OBJECT_TYPE_NOTHING"           
+            ];
+            var parse_values = {
+                "time": '"time"',
+                "lane1": '"lane1"',
+                "lane2": '"lane2"',
+                "lane3": '"lane3"',                
+                "lane4": '"lane4"',                
+                "lane5": '"lane5"',              
+				"lane6": '"lane6"',
+                "GUI_OBJECT_GAME_ENEMY": 0,
+                "GUI_OBJECT_GAME_PRODUCT": 1,
+                "GUI_OBJECT_GAME_NITRO": 2,
+                "GUI_OBJECT_GAME_OBSTACLE": 3,
+                "GUI_OBJECT_GAME_DECORATE": 4,
+                "GUI_OBJECT_GAME_DECORATE1": 5,
+                "GUI_OBJECT_GAME_DECORATE2": 6,
+                "GUI_OBJECT_GAME_DECORATE3": 7
+            };
+            var null_to_code_value = "OBJECT_TYPE_NOTHING";
+            var sprite_to_code_value = [
+                "GUI_OBJECT_GAME_ENEMY",
+                "GUI_OBJECT_GAME_PRODUCT",
+                "GUI_OBJECT_GAME_NITRO",
+                "GUI_OBJECT_GAME_OBSTACLE",
+                "GUI_OBJECT_GAME_DECORATE",
+                "GUI_OBJECT_GAME_DECORATE1",
+                "GUI_OBJECT_GAME_DECORATE2",
+                "GUI_OBJECT_GAME_DECORATE3"
+            ];
+            
+            var sprite_name_to_value = {
+                floor: 0, Icon: 1, item1: 2, item2: 3, item3: 4, item4: 5, item5: 6, item6: 7, item7: 8, item8: 9, item9: 10, item10: 11, item11: 12,
+            }
+            
+            var image_links = [
+                "floor_1.png",
+                "lg_icon.png",
+                "item_1.png",
+                "item_2.png",
+                "item_3.png",
+                "item_4.png",
+                "item_5.png",
+                "item_6.png",
+                "item_7.png",
+                "item_8.png",
+				"speedup.png",
+				"saw.png",
+				"bounce.png",
+            ]
+            
+            var current_image_key = "";
+            
+            var options = document.getElementById("sprite-select").getElementsByTagName("input");
+            for (var i = 0; i < options.length; i++) {
+                options[i].onchange = function() {
+                    if (this.checked) current_image_key = sprite_name_to_value[this.id];
+                }
+            }
+            
+            var lanes = document.getElementsByClassName("lane");
+            for (var i = 0; i < lanes.length; i++) {
+                var lane = lanes[i];
+                lane.onclick = function(e) {
+                    var img = this.getElementsByTagName("img")[0];
+                    
+                    if (e.ctrlKey) {
+                        img.src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw==';
+                        this.sprite_value = null;
+                    }
+                    else if (image_links[current_image_key]) {
+                        this.sprite_value = current_image_key;
+                        img.src = image_links[current_image_key];
+                    }
+                }
+            }
+            
+            base.style.display = "none";
+            
+            function replace_string(str, replaceWhat, replaceTo){
+                var re = new RegExp(replaceWhat, 'g');
+                return str.replace(re,replaceTo);
+            }
+            
+            function import_settings() {
+                //prompt for user input
+                var str = prompt("Enter import string:");
+                
+                if (str == null) return;
+                
+                for (var i = 0; i < null_values.length; i++) {
+                    console.log(null_values[i]);
+                    str = replace_string(str, null_values[i], "null"); 
+                }
+                
+                for (var value in parse_values) {
+                    if (parse_values.hasOwnProperty(value)) {
+                        str = replace_string(str, value, parse_values[value]); 
+                    }
+                }
+                
+                console.log(str);
+                var settings = JSON.parse(str);
+                JSON.stringify
+                
+                
+                for (var i = settings.length - 1; i > 0; i--) {
+                    var line = settings[i];
+                    var row = document.getElementsByClassName("row")[settings.length - i+1];
+                    var lanes = row.getElementsByClassName("lane");
+                    for (var j=0; j<line.length; j++)
+                    {
+                        lanes[j].sprite_value = line[j];
+                        if (lanes[j].sprite_value != -1)
+                            lanes[j].getElementsByTagName("img")[0].src = image_links[lanes[j].sprite_value];
+                    }
+                }
+            }
+            
+            const {dialog, shell, Menu} = require('electron').remote
+
+            const fs = require('electron').remote.fs
+			
+			var gui = require('dat-gui');
+			//var gui = new dat.GUI();
+
+			gui.addColor('yellow', 'color0');
+			
+            function export_settings() {
+                {
+                dialog.showOpenDialog(function (fileNames) {
+                    if(fileNames === undefined){
+                        console.log("No file selected");
+                    }else{
+                        document.getElementById("actual-file").value = fileNames[0];
+                        readFile(fileNames[0]);
+                    }
+                }); 
+                }
+                /*
+                var settings = [];
+                var rows = document.getElementsByClassName("row");
+                
+                for (var i = intervals; i > 0; i--) {
+                    var row = rows[i];
+                    var row_setting = [];
+                    var lanes = row.getElementsByClassName("lane");                    
+					for (var j=0; j<lanes.length; j++)
+					{
+						if (lanes[j].sprite_value != null)
+							row_setting.push(lanes[j].sprite_value);
+						else
+							row_setting.push(-1);
+					}
+					settings.push(row_setting);
+					var result = JSON.stringify(settings).replace(/\"([^(\")"]+)\"/g,"$1");                
+					document.getElementById("export_area").value = result;
+				}
+                                */
+            }
+			
+        </script>
+    </body>
+</html
+>

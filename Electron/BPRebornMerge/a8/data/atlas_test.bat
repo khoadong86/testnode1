@@ -1,0 +1,1 @@
+python pack.py arrow.png arrow_blur.png -mw 2048 -mh 2048 
